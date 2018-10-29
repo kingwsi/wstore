@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.144.133:3306/wstore
+    username: root
+    password: root
+dubbo:
+  registry:
+    address: zookeeper://192.168.144.130
+    port: 2181
+  application:
+    name: wstore-service-portal
+  protocol:
+    serialization: kryo
+    port: 20885
+logging:
+  level:
+    com.wstore.mapper: debug

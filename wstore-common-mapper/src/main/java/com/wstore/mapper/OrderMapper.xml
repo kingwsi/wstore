@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wstore.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.wstore.pojo.order.Order">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="order_sn" jdbcType="BIGINT" property="orderSn"/>
+        <result column="leave_word" jdbcType="VARCHAR" property="leaveWord"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="total_money" jdbcType="INTEGER" property="totalMoney"/>
+        <result column="pay_money" jdbcType="INTEGER" property="payMoney"/>
+        <result column="pay_channel" jdbcType="INTEGER" property="payChannel"/>
+        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime"/>
+        <result column="finished_time" jdbcType="TIMESTAMP" property="finishedTime"/>
+        <result column="comment_status" jdbcType="INTEGER" property="commentStatus"/>
+        <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime"/>
+        <result column="ship_store" jdbcType="VARCHAR" property="shipStore"/>
+        <result column="ship_sn" jdbcType="VARCHAR" property="shipSn"/>
+        <result column="ship_time" jdbcType="TIMESTAMP" property="shipTime"/>
+        <result column="receipt_time" jdbcType="TIMESTAMP" property="receiptTime"/>
+        <result column="digest" jdbcType="VARCHAR" property="digest"/>
+        <result column="last_pay_time" jdbcType="TIMESTAMP" property="lastPayTime"/>
+        <result column="last_comfirm_ship_time" jdbcType="TIMESTAMP" property="lastComfirmShipTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <collection property="orderDetails" ofType="com.wstore.pojo.order.OrderDetail" javaType="list">
+            <id column="ddtail_id" jdbcType="INTEGER" property="id"/>
+            <result column="order_sn" jdbcType="BIGINT" property="orderSn"/>
+            <result column="product_id" jdbcType="INTEGER" property="productId"/>
+            <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+            <result column="sku_id" jdbcType="INTEGER" property="skuId"/>
+            <result column="sku_properties" jdbcType="VARCHAR" property="skuProperties"/>
+            <result column="sku_pic" jdbcType="VARCHAR" property="skuPic"/>
+            <result column="market_price" jdbcType="INTEGER" property="marketPrice"/>
+            <result column="price" jdbcType="INTEGER" property="price"/>
+            <result column="amount" jdbcType="INTEGER" property="amount"/>
+            <result column="total_money" jdbcType="INTEGER" property="totalMoney"/>
+            <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+            <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="CartResultMap" type="com.wstore.pojo.cart.ShoppingCart">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user" jdbcType="INTEGER" property="user"/>
+        <result column="product_id" jdbcType="INTEGER" property="productId"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="sku_id" jdbcType="INTEGER" property="skuId"/>
+        <result column="sku_param" jdbcType="VARCHAR" property="skuParam"/>
+        <result column="count" jdbcType="INTEGER" property="count"/>
+        <result column="main_pic" jdbcType="VARCHAR" property="mainPic"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result column="brand_id" jdbcType="INTEGER" property="brandId"/>
+        <result column="brand_name" jdbcType="VARCHAR" property="brandName"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, user_id, order_sn, leave_word, status, remark, total_money, pay_money, pay_channel, 
+    pay_time, finished_time, comment_status, comment_time, ship_store, ship_sn, ship_time, 
+    receipt_time, digest, last_pay_time, last_comfirm_ship_time, create_time, update_time
+  </sql>
+    <sql id="With_Details_Column">
+        o.id, o.user_id, o.order_sn, o.status, o.total_money, o.pay_money
+    receipt_time,o.last_pay_time,o.create_time,od.id AS did,od.product_id, od.product_name, sku_properties, sku_pic, market_price,
+        price, amount, od.total_money
+    </sql>
+    <select id="selectByExample" parameterType="com.wstore.pojo.order.OrderExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from tbl_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <!--FROM tbl_order o LEFT JOIN tbl_order_detail od ON o.order_sn = od.order_sn-->
+    <!--查询订单 - 详情-->
+    <select id="selectOrderWithDetail" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+        tbl_order o
+    LEFT JOIN
+        tbl_order_detail od
+    ON
+        o.order_sn = od.order_sn
+    WHERE
+        o.user_id = #{userId,jdbcType=INTEGER}
+    <if test="status!=null">
+        <choose>
+            <when test="status > 3">
+                AND o.status > 3
+            </when>
+            <otherwise>
+                AND o.status = #{status,jdbcType=INTEGER}
+            </otherwise>
+        </choose>
+    </if>
+    ORDER BY
+        o.create_time
+    DESC
+  </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_order
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.wstore.pojo.order.OrderExample">
+        delete from tbl_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.wstore.pojo.order.Order">
+    insert into tbl_order (id, user_id, order_sn, 
+      leave_word, status, remark, 
+      total_money, pay_money, pay_channel, 
+      pay_time, finished_time, comment_status, 
+      comment_time, ship_store, ship_sn, 
+      ship_time, receipt_time, digest, 
+      last_pay_time, last_comfirm_ship_time, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderSn,jdbcType=BIGINT}, 
+      #{leaveWord,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{totalMoney,jdbcType=INTEGER}, #{payMoney,jdbcType=INTEGER}, #{payChannel,jdbcType=INTEGER}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{finishedTime,jdbcType=TIMESTAMP}, #{commentStatus,jdbcType=INTEGER}, 
+      #{commentTime,jdbcType=TIMESTAMP}, #{shipStore,jdbcType=VARCHAR}, #{shipSn,jdbcType=VARCHAR}, 
+      #{shipTime,jdbcType=TIMESTAMP}, #{receiptTime,jdbcType=TIMESTAMP}, #{digest,jdbcType=VARCHAR}, 
+      #{lastPayTime,jdbcType=TIMESTAMP}, #{lastComfirmShipTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.wstore.pojo.order.Order">
+        insert into tbl_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="orderSn != null">
+                order_sn,
+            </if>
+            <if test="leaveWord != null">
+                leave_word,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="totalMoney != null">
+                total_money,
+            </if>
+            <if test="payMoney != null">
+                pay_money,
+            </if>
+            <if test="payChannel != null">
+                pay_channel,
+            </if>
+            <if test="payTime != null">
+                pay_time,
+            </if>
+            <if test="finishedTime != null">
+                finished_time,
+            </if>
+            <if test="commentStatus != null">
+                comment_status,
+            </if>
+            <if test="commentTime != null">
+                comment_time,
+            </if>
+            <if test="shipStore != null">
+                ship_store,
+            </if>
+            <if test="shipSn != null">
+                ship_sn,
+            </if>
+            <if test="shipTime != null">
+                ship_time,
+            </if>
+            <if test="receiptTime != null">
+                receipt_time,
+            </if>
+            <if test="digest != null">
+                digest,
+            </if>
+            <if test="lastPayTime != null">
+                last_pay_time,
+            </if>
+            <if test="lastComfirmShipTime != null">
+                last_comfirm_ship_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="orderSn != null">
+                #{orderSn,jdbcType=BIGINT},
+            </if>
+            <if test="leaveWord != null">
+                #{leaveWord,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="totalMoney != null">
+                #{totalMoney,jdbcType=INTEGER},
+            </if>
+            <if test="payMoney != null">
+                #{payMoney,jdbcType=INTEGER},
+            </if>
+            <if test="payChannel != null">
+                #{payChannel,jdbcType=INTEGER},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="finishedTime != null">
+                #{finishedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="commentStatus != null">
+                #{commentStatus,jdbcType=INTEGER},
+            </if>
+            <if test="commentTime != null">
+                #{commentTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="shipStore != null">
+                #{shipStore,jdbcType=VARCHAR},
+            </if>
+            <if test="shipSn != null">
+                #{shipSn,jdbcType=VARCHAR},
+            </if>
+            <if test="shipTime != null">
+                #{shipTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="receiptTime != null">
+                #{receiptTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="digest != null">
+                #{digest,jdbcType=VARCHAR},
+            </if>
+            <if test="lastPayTime != null">
+                #{lastPayTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastComfirmShipTime != null">
+                #{lastComfirmShipTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.wstore.pojo.order.OrderExample" resultType="java.lang.Long">
+        select count(*) from tbl_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <select id="selectCartToOrder" parameterType="com.wstore.pojo.order.OrderConfirm" resultMap="CartResultMap">
+        select
+        *
+        from tbl_shopping_cart
+        where user = #{orderConfirm.userId,jdbcType=INTEGER}
+        AND id IN (
+        <foreach collection="orderConfirm.carts" item="item" index="index" separator=",">
+            #{item}
+        </foreach>
+        )
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update tbl_order
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.userId != null">
+                user_id = #{record.userId,jdbcType=INTEGER},
+            </if>
+            <if test="record.orderSn != null">
+                order_sn = #{record.orderSn,jdbcType=BIGINT},
+            </if>
+            <if test="record.leaveWord != null">
+                leave_word = #{record.leaveWord,jdbcType=VARCHAR},
+            </if>
+            <if test="record.status != null">
+                status = #{record.status,jdbcType=INTEGER},
+            </if>
+            <if test="record.remark != null">
+                remark = #{record.remark,jdbcType=VARCHAR},
+            </if>
+            <if test="record.totalMoney != null">
+                total_money = #{record.totalMoney,jdbcType=INTEGER},
+            </if>
+            <if test="record.payMoney != null">
+                pay_money = #{record.payMoney,jdbcType=INTEGER},
+            </if>
+            <if test="record.payChannel != null">
+                pay_channel = #{record.payChannel,jdbcType=INTEGER},
+            </if>
+            <if test="record.payTime != null">
+                pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.finishedTime != null">
+                finished_time = #{record.finishedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.commentStatus != null">
+                comment_status = #{record.commentStatus,jdbcType=INTEGER},
+            </if>
+            <if test="record.commentTime != null">
+                comment_time = #{record.commentTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.shipStore != null">
+                ship_store = #{record.shipStore,jdbcType=VARCHAR},
+            </if>
+            <if test="record.shipSn != null">
+                ship_sn = #{record.shipSn,jdbcType=VARCHAR},
+            </if>
+            <if test="record.shipTime != null">
+                ship_time = #{record.shipTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.receiptTime != null">
+                receipt_time = #{record.receiptTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.digest != null">
+                digest = #{record.digest,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lastPayTime != null">
+                last_pay_time = #{record.lastPayTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.lastComfirmShipTime != null">
+                last_comfirm_ship_time = #{record.lastComfirmShipTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update tbl_order
+        set id = #{record.id,jdbcType=INTEGER},
+        user_id = #{record.userId,jdbcType=INTEGER},
+        order_sn = #{record.orderSn,jdbcType=BIGINT},
+        leave_word = #{record.leaveWord,jdbcType=VARCHAR},
+        status = #{record.status,jdbcType=INTEGER},
+        remark = #{record.remark,jdbcType=VARCHAR},
+        total_money = #{record.totalMoney,jdbcType=INTEGER},
+        pay_money = #{record.payMoney,jdbcType=INTEGER},
+        pay_channel = #{record.payChannel,jdbcType=INTEGER},
+        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+        finished_time = #{record.finishedTime,jdbcType=TIMESTAMP},
+        comment_status = #{record.commentStatus,jdbcType=INTEGER},
+        comment_time = #{record.commentTime,jdbcType=TIMESTAMP},
+        ship_store = #{record.shipStore,jdbcType=VARCHAR},
+        ship_sn = #{record.shipSn,jdbcType=VARCHAR},
+        ship_time = #{record.shipTime,jdbcType=TIMESTAMP},
+        receipt_time = #{record.receiptTime,jdbcType=TIMESTAMP},
+        digest = #{record.digest,jdbcType=VARCHAR},
+        last_pay_time = #{record.lastPayTime,jdbcType=TIMESTAMP},
+        last_comfirm_ship_time = #{record.lastComfirmShipTime,jdbcType=TIMESTAMP},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wstore.pojo.order.Order">
+        update tbl_order
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="orderSn != null">
+                order_sn = #{orderSn,jdbcType=BIGINT},
+            </if>
+            <if test="leaveWord != null">
+                leave_word = #{leaveWord,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="totalMoney != null">
+                total_money = #{totalMoney,jdbcType=INTEGER},
+            </if>
+            <if test="payMoney != null">
+                pay_money = #{payMoney,jdbcType=INTEGER},
+            </if>
+            <if test="payChannel != null">
+                pay_channel = #{payChannel,jdbcType=INTEGER},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="finishedTime != null">
+                finished_time = #{finishedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="commentStatus != null">
+                comment_status = #{commentStatus,jdbcType=INTEGER},
+            </if>
+            <if test="commentTime != null">
+                comment_time = #{commentTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="shipStore != null">
+                ship_store = #{shipStore,jdbcType=VARCHAR},
+            </if>
+            <if test="shipSn != null">
+                ship_sn = #{shipSn,jdbcType=VARCHAR},
+            </if>
+            <if test="shipTime != null">
+                ship_time = #{shipTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="receiptTime != null">
+                receipt_time = #{receiptTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="digest != null">
+                digest = #{digest,jdbcType=VARCHAR},
+            </if>
+            <if test="lastPayTime != null">
+                last_pay_time = #{lastPayTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastComfirmShipTime != null">
+                last_comfirm_ship_time = #{lastComfirmShipTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wstore.pojo.order.Order">
+    update tbl_order
+    set user_id = #{userId,jdbcType=INTEGER},
+      order_sn = #{orderSn,jdbcType=BIGINT},
+      leave_word = #{leaveWord,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      total_money = #{totalMoney,jdbcType=INTEGER},
+      pay_money = #{payMoney,jdbcType=INTEGER},
+      pay_channel = #{payChannel,jdbcType=INTEGER},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      finished_time = #{finishedTime,jdbcType=TIMESTAMP},
+      comment_status = #{commentStatus,jdbcType=INTEGER},
+      comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      ship_store = #{shipStore,jdbcType=VARCHAR},
+      ship_sn = #{shipSn,jdbcType=VARCHAR},
+      ship_time = #{shipTime,jdbcType=TIMESTAMP},
+      receipt_time = #{receiptTime,jdbcType=TIMESTAMP},
+      digest = #{digest,jdbcType=VARCHAR},
+      last_pay_time = #{lastPayTime,jdbcType=TIMESTAMP},
+      last_comfirm_ship_time = #{lastComfirmShipTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

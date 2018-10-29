@@ -1,0 +1,25 @@
+#数据源
+spring:
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 192.168.144.133:9300
+  datasource:
+      url: jdbc:mysql://192.168.144.133:3306/wstore
+      username: root
+      password: root
+#dubbo
+dubbo:
+  registry:
+    address: zookeeper://192.168.144.130
+    port: 2181
+  application:
+    name: wstore-service-search
+  protocol:
+    serialization: kryo
+    port: 20887
+logging:
+  level:
+    com.wstore.mapper: debug
+#每次向ES中插入商品数据分页大小
+product.section.size: 500

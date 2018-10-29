@@ -1,0 +1,45 @@
+.wrapper_tippage {
+    width: 1040px;
+    margin: 0 auto;
+    padding: 120px 0 240px;
+    position: relative;
+}
+.wrapper_tippage {
+    width: 500px;
+    margin: 0 auto;
+    padding: 120px 0 300px;
+    position: relative;
+}
+.wrapper_tippage .left-img{
+    padding-top: 10px;
+    float: left;
+}
+.wrapper_tippage .left-img img{
+    width: 140px;
+    height: 140px;
+}
+.wrapper_tippage .result-title{
+    font-size: 28px;
+    width: 300px;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 35px;
+}
+.wrapper_tippage .pay-result-detail{
+    margin-left: 45px;
+    line-height: 1.8em;
+    font-size: 14px;
+    float: left;
+    color: #8c8c8c;
+}
+.wrapper_tippage .pay-result-detail p:first-child span{
+    color: #E02B41;
+    font-size: 16px;
+}
+.wrapper_tippage .pay-result-detail span{
+    color: #4D4D4D;
+    padding-left: 10px;
+}
+.wrapper_tippage .pay-result-detail a{
+    color: #00a7ec;
+}

@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wstore.mapper.ShoppingCartMapper">
+    <resultMap id="BaseResultMap" type="com.wstore.pojo.cart.ShoppingCart">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user" jdbcType="INTEGER" property="user"/>
+        <result column="product_id" jdbcType="INTEGER" property="productId"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="sku_id" jdbcType="INTEGER" property="skuId"/>
+        <result column="sku_param" jdbcType="VARCHAR" property="skuParam"/>
+        <result column="count" jdbcType="INTEGER" property="count"/>
+        <result column="main_pic" jdbcType="VARCHAR" property="mainPic"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result column="brand_id" jdbcType="INTEGER" property="brandId"/>
+        <result column="brand_name" jdbcType="VARCHAR" property="brandName"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <resultMap id="cartGroup" type="com.wstore.pojo.cart.CartGroup">
+        <id column="gid" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <collection property="shoppingCarts" ofType="com.wstore.pojo.cart.ShoppingCart" javaType="list">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <result column="user" jdbcType="INTEGER" property="user"/>
+            <result column="product_id" jdbcType="INTEGER" property="productId"/>
+            <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+            <result column="sku_id" jdbcType="INTEGER" property="skuId"/>
+            <result column="sku_param" jdbcType="VARCHAR" property="skuParam"/>
+            <result column="count" jdbcType="INTEGER" property="count"/>
+            <result column="main_pic" jdbcType="VARCHAR" property="mainPic"/>
+            <result column="price" jdbcType="INTEGER" property="price"/>
+            <result column="brand_id" jdbcType="INTEGER" property="brandId"/>
+            <result column="brand_name" jdbcType="VARCHAR" property="brandName"/>
+            <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+            <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        </collection>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, user, product_id, product_name, sku_id, sku_param, count, main_pic, price, brand_id,
+            brand_name, create_time, update_time
+    </sql>
+    <!--生成购物车数据-->
+    <sql id="Select_All_By_Sku">
+        p1.id AS product_id, p1.name AS product_name, s1.id AS sku_id, s1.sku_pic AS main_pic, s1.price,
+        GROUP_CONCAT(s2.property_value) AS sku_param, b1.id AS brand_id, b1.name AS brand_name
+    </sql>
+    <sql id="Select_Cart_By_User">
+        g1.id AS gid, g1.user_id, g1.group_id, g2.*
+    </sql>
+    <!--通过sku查询，组合购物车信息-->
+    <select id="selectBySku" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Select_All_By_Sku"/>
+        FROM tbl_sku s1
+        LEFT JOIN tbl_sku_property s2
+        ON s1.sku_code=s2.sku_code
+        LEFT JOIN tbl_product p1
+        ON s1.product_code=p1.code
+        LEFT JOIN tbl_brand b1
+        ON p1.brandId=b1.id
+        WHERE s1.id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!--查询后分组-->
+    <select id="selectCartGroup" parameterType="java.lang.Integer" resultMap="cartGroup">
+        SELECT
+        <include refid="Select_Cart_By_User"/>
+        FROM
+        tbl_cart_group g1
+        LEFT JOIN
+        tbl_shopping_cart g2
+        ON
+        g1.group_id = g2.brand_id
+        WHERE
+        g1.user_id = #{id,jdbcType=INTEGER} AND g2.user = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!--批量插入购物车数据-->
+    <insert id="insertShoppingCarts" parameterType="java.util.List">
+        insert into tbl_shopping_cart (user, product_id,
+        product_name, sku_id, sku_param,
+        count, main_pic, price,
+        brand_id, brand_name, create_time,
+        update_time)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.user},#{item.productId},#{item.productName},#{item.skuId},
+            #{item.skuParam},#{item.count},#{item.mainPic},#{item.price},
+            #{item.brandId},#{item.brandName},#{item.createTime},#{item.updateTime})
+        </foreach>
+    </insert>
+    <select id="selectByExample" parameterType="com.wstore.pojo.cart.ShoppingCartExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from tbl_shopping_cart
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_shopping_cart
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <!--根据用户分组-->
+    <delete id="deleteGroupByUser" parameterType="java.util.List">
+        DELETE g1,
+        g2
+        FROM
+        tbl_cart_group g1
+        INNER JOIN tbl_shopping_cart g2 ON g1.group_id = g2.brand_id
+        WHERE g1.user_id IN (
+        <foreach collection="list" item="item" index="index" separator=",">
+            #{item.userId}
+        </foreach>
+        )
+    </delete>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tbl_shopping_cart
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.wstore.pojo.cart.ShoppingCartExample">
+        delete from tbl_shopping_cart
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.wstore.pojo.cart.ShoppingCart">
+        insert into tbl_shopping_cart (id,
+                                       user,
+                                       product_id,
+                                       product_name,
+                                       sku_id,
+                                       sku_param,
+                                       count,
+                                       main_pic,
+                                       price,
+                                       brand_id,
+                                       brand_name,
+                                       create_time,
+                                       update_time)
+        values (#{id,jdbcType=INTEGER},
+                #{user,jdbcType=INTEGER},
+                #{productId,jdbcType=INTEGER},
+                #{productName,jdbcType=VARCHAR},
+                #{skuId,jdbcType=INTEGER},
+                #{skuParam,jdbcType=VARCHAR},
+                #{count,jdbcType=INTEGER},
+                #{mainPic,jdbcType=VARCHAR},
+                #{price,jdbcType=INTEGER},
+                #{brandId,jdbcType=INTEGER},
+                #{brandName,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP},
+                #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.wstore.pojo.cart.ShoppingCart">
+        insert into tbl_shopping_cart
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="user != null">
+                user,
+            </if>
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="skuId != null">
+                sku_id,
+            </if>
+            <if test="skuParam != null">
+                sku_param,
+            </if>
+            <if test="count != null">
+                count,
+            </if>
+            <if test="mainPic != null">
+                main_pic,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+            <if test="brandName != null">
+                brand_name,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="user != null">
+                #{user,jdbcType=INTEGER},
+            </if>
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="skuId != null">
+                #{skuId,jdbcType=INTEGER},
+            </if>
+            <if test="skuParam != null">
+                #{skuParam,jdbcType=VARCHAR},
+            </if>
+            <if test="count != null">
+                #{count,jdbcType=INTEGER},
+            </if>
+            <if test="mainPic != null">
+                #{mainPic,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=INTEGER},
+            </if>
+            <if test="brandId != null">
+                #{brandId,jdbcType=INTEGER},
+            </if>
+            <if test="brandName != null">
+                #{brandName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.wstore.pojo.cart.ShoppingCartExample" resultType="java.lang.Long">
+        select count(*) from tbl_shopping_cart
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update tbl_shopping_cart
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.user != null">
+                user = #{record.user,jdbcType=INTEGER},
+            </if>
+            <if test="record.productId != null">
+                product_id = #{record.productId,jdbcType=INTEGER},
+            </if>
+            <if test="record.productName != null">
+                product_name = #{record.productName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.skuId != null">
+                sku_id = #{record.skuId,jdbcType=INTEGER},
+            </if>
+            <if test="record.skuParam != null">
+                sku_param = #{record.skuParam,jdbcType=VARCHAR},
+            </if>
+            <if test="record.count != null">
+                count = #{record.count,jdbcType=INTEGER},
+            </if>
+            <if test="record.mainPic != null">
+                main_pic = #{record.mainPic,jdbcType=VARCHAR},
+            </if>
+            <if test="record.price != null">
+                price = #{record.price,jdbcType=INTEGER},
+            </if>
+            <if test="record.brandId != null">
+                brand_id = #{record.brandId,jdbcType=INTEGER},
+            </if>
+            <if test="record.brandName != null">
+                brand_name = #{record.brandName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update tbl_shopping_cart
+        set id = #{record.id,jdbcType=INTEGER},
+        user = #{record.user,jdbcType=INTEGER},
+        product_id = #{record.productId,jdbcType=INTEGER},
+        product_name = #{record.productName,jdbcType=VARCHAR},
+        sku_id = #{record.skuId,jdbcType=INTEGER},
+        sku_param = #{record.skuParam,jdbcType=VARCHAR},
+        count = #{record.count,jdbcType=INTEGER},
+        main_pic = #{record.mainPic,jdbcType=VARCHAR},
+        price = #{record.price,jdbcType=INTEGER},
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wstore.pojo.cart.ShoppingCart">
+        update tbl_shopping_cart
+        <set>
+            <if test="user != null">
+                user = #{user,jdbcType=INTEGER},
+            </if>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="skuId != null">
+                sku_id = #{skuId,jdbcType=INTEGER},
+            </if>
+            <if test="skuParam != null">
+                sku_param = #{skuParam,jdbcType=VARCHAR},
+            </if>
+            <if test="count != null">
+                count = #{count,jdbcType=INTEGER},
+            </if>
+            <if test="mainPic != null">
+                main_pic = #{mainPic,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=INTEGER},
+            </if>
+            <if test="brandId != null">
+                brand_id = #{brandId,jdbcType=INTEGER},
+            </if>
+            <if test="brandName != null">
+                brand_name = #{brandName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wstore.pojo.cart.ShoppingCart">
+        update tbl_shopping_cart
+        set user         = #{user,jdbcType=INTEGER},
+            product_id   = #{productId,jdbcType=INTEGER},
+            product_name = #{productName,jdbcType=VARCHAR},
+            sku_id       = #{skuId,jdbcType=INTEGER},
+            sku_param    = #{skuParam,jdbcType=VARCHAR},
+            count        = #{count,jdbcType=INTEGER},
+            main_pic     = #{mainPic,jdbcType=VARCHAR},
+            price        = #{price,jdbcType=INTEGER},
+            brand_id     = #{brandId,jdbcType=INTEGER},
+            brand_name   = #{brandName,jdbcType=VARCHAR},
+            create_time  = #{createTime,jdbcType=TIMESTAMP},
+            update_time  = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

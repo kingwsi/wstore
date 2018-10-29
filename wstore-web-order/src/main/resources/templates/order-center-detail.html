@@ -1,0 +1,662 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>我的订单-魅族商城</title>
+    <link href="//store.res.meizu.com/layout/img/favicon-2e71785f44.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="//store.res.meizu.com/layout/img/favicon-2e71785f44.ico" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/order-newPayment.css">
+    <script src="/js/jquery-3.3.1.js"></script>
+</head>
+<body>
+<div id="nTalk_post_hiddenElement"
+     style="left: -10px; top: -10px; visibility: hidden; display: none; width: 1px; height: 1px;"></div>
+<!-- common header -->
+<header class="layout-header clearfix" id="layoutHeader">
+    <div class="mzcontainer">
+        <div class="layout-header-logo">
+            <a target="_blank" href="http://www.meizu.com" class="layout-header-logo-link" alt="魅族科技"
+               data-mtype="wmz_public_yt_logo">
+                <img src="data:image/png;base64,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"
+                     style="max-width:125px;margin-top:  28px;">
+            </a>
+        </div>
+        <ul class="layout-header-service clearfix">
+            <li class="layout-header-service-item layout-header-service-search mz-autocomlete" id="layoutHeaderSearch">
+
+                <input class="mz-autocomlete-input" placeholder="魅族 V8"><img class="layout-img-search"
+                                                                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAAAXNSR0IArs4c6QAAA4VJREFUSA21Vz1oU1EU7ntNGweldZWiiyB0KaHVgD+LS0HrJtZBpCC0aZMsaju42Mkh1ilpTDrVn8XiIupQIVsdktihS0EQQaiVLkKxQ9KGxO97vvO4L76bJnnpg+Sec+453/neub/P6GryicfjwUqlcqFarQ7UarVTDDMMY9s0za1AIFBIJpPlJqE83QxPq2KMRCJjSD6BpKMgcFzpckT07aFvFaSWM5nMB6ejBUFLBAT49s+AdbkFPLquoUL30+l0sZU4TyJTU1MRgCTxlgEVDG++CX0D9m3aoXOIhqAPUpcH9grkeDabzYjtsPY/IiDxFMAPJRCgZegpvGUGb/lN7Go7MzNzFvMnAt8YfIPSB30BZGZFb9S6iLASAHquBOR7enrGFxcXfyg2rRiNRs8cHBy8gUNYnEBmupnKOEQ4J0DiM37WcADgbW9v751WVwNX1/7+/mvg3CQZ4FTwu4RJXBByXq0pRk5MIQFbvh0SxCJxxhKDOjHtSU9V+1gVsZfoe3qBfRnz4Vyzw6FD5jBh3nwFEWvOYGnfaLS0rYpwnxBABKb8kiAWMYgluGoOsamtyTFFFUbFyNUhst9WxWIO5tJhmty2wdzaMeG8qVuiOoBGdmIRkz7MwVw6fxMlG1A6NxS5U6KDWZfLhW+CqXWA0QrZ2jFdHj4VFVPNVQ/rLN/6jqPQMUw1Ha6JTqcKkJ3q6AJatddh/tLFY3mbW0rnkCJ3SnQw63K58E0ssQJY79GKMRzkAeby8KEQi5iEYA7m0sGZ3JLhvCoOPEVF9tuqWMzR6NyyJitKtixJwTzG7Vn0dltiEEviIb8Q2au1iNhnwBodwDzIo7zRLugFpNoYSwxiKfbZycnJ04ruEp3li6o8AGverPiEeZS3Q4YxjCWGhWT/gdQViBu484yrdpGd+wgNR3ExAoF3eMnraANOUsN42dfXF0skEn/E1i0C2/X19S8jIyM8dy7adn46TA8PD/eHw+HvxWLxt213NVwdoVDoEXxfocOZX6jwwtLS0j3Ef4J8FX0n7cChUql0C/Y8cv6kzVUR28mqDOSOXp7n5uZO7O7upkD2ruThVID+GGSfeBKho5/PCc433dUQuLdx+PFe3C+E0I5piYiTfXubAPuOfWBx9QCP91pOYD6HE/nn19U1Pz9/bGdn5zyPcgBYZxLA2v7kXFlZ6c7lcteAVcXQfPwLwMHO9PXwzvQAAAAASUVORK5CYII=">
+            </li>
+            <li class="layout-header-service-item layout-header-service-msg" id="layoutHeaderUser">
+                <a class="layout-header-service-link" href="//me.meizu.com/member/index"
+                   data-mtype="wmz_public_yt_mycenter">
+                    <img src="//image-res.mzres.com/image/uc/80f8d55d49464e3e90d72f6679cbf970z?t=1514367291000" alt=" "
+                         class="layout-header-service-avatar">
+                </a>
+            </li>
+        </ul>
+        <ul class="layout-header-nav clearfix" id="layoutHeaderNav">
+            <li class="layout-header-nav-item">
+                <a href="#" class="layout-header-nav-link">手机</a>
+            </li>
+            <li class="layout-header-nav-item">
+                <a href="#" class="layout-header-nav-link"
+                   data-mtype="wmz_public_yt_custom_2">声学</a>
+            </li>
+            <li class="layout-header-nav-item">
+                <a href="#" class="layout-header-nav-link"
+                   data-mtype="wmz_public_yt_custom_3">智能</a>
+            </li>
+            <li class="layout-header-nav-item">
+                <a href="#" class="layout-header-nav-link"
+                   data-mtype="wmz_public_yt_custom_4">生活</a>
+            </li>
+            <li class="layout-header-nav-item">
+                <a href="#" class="layout-header-nav-link" target="_blank"
+                   data-mtype="wmz_public_yt_flyme">Flyme</a>
+            </li>
+            <li class="layout-header-nav-item">
+                <a href="#" class="layout-header-nav-link" target="_blank"
+                   data-mtype="wmz_public_yt_service">服务</a>
+            </li>
+            <li class="layout-header-nav-item">
+                <a href="#" class="layout-header-nav-link" target="_blank"
+                   data-mtype="wmz_public_yt_offstore">专卖店</a>
+            </li>
+            <li class="layout-header-nav-item">
+                <a href="#" class="layout-header-nav-link" target="_blank" data-mtype="wmz_public_yt_bbs">社区</a>
+            </li>
+            <li class="layout-header-nav-item app-down">
+                <a href="javascript:;" class="layout-header-nav-link" target="_blank"
+                   data-mtype="wmz_public_yt_app">APP下载</a>
+            </li>
+        </ul>
+        <div class="layout-header-nav-downmenu" id="layoutHeaderNavDownmenu"></div>
+    </div>
+</header>
+
+<div class="store-wrap">
+    <div class="crumbs">
+        <a href="#">首页 &gt;&nbsp;</a><a href="//me.meizu.com/member/index">我的商城
+        &gt;&nbsp;</a><a href="" class="active">我的订单&nbsp;</a>
+    </div>
+    <div class="main clearfix">
+        <div class="left-nav f-fl">
+            <div class="nav-main">
+                <a href="javascript:;" class="type-title">订单中心</a>
+                <a href="#" class="ml active">我的订单</a>
+                <a href="javascript:;" class="type-title">个人中心</a>
+                <a href="#" class="ml">地址管理</a>
+                <a href="#" class="ml ">建议反馈</a>
+                <a href="javascript:;" class="type-title">服务中心</a>
+                <a href="#" class="ml " style="width: 105px">退款/退换货跟踪</a>
+                <a href="#" class="ml ">以旧换新</a>
+            </div>
+        </div>
+        <div class="right-content f-fr">
+            <div class="orderDetail-main">
+                <div class="type-tab-btn">
+                    <a href="javascript:;" class="active">订单详情</a>
+                </div>
+
+                <div class="process">
+                    <hr class="cercel4">
+                    <hr class="covering cercel4" style="width:84%;">
+                    <ul class="line-time clearfix">
+                        <li class="s-01 active">
+                            提交订单<br>2018-10-12 09:24:32</li>
+                        <li class="s-02 active">
+                            买家已付款<br>2018-10-12 16:45:36</li>
+                        <li class="s-03 active">
+                            发货中<br>2018-10-12 17:44:45</li>
+                        <li class="s-04 active">
+                            交易成功<br>2018-10-22 17:45:26</li>
+                    </ul>
+                </div>
+                <div class="item info status">
+                    <div class="orderComplete order-item">
+                        <span class="order-status">订单状态：</span><span class="blue">订单完成</span><br>
+                        <span class="gray">订单已交易完成，欢迎再次光临魅族商城。</span>
+                    </div>
+
+
+                </div>
+
+
+                <div id="deliver" class="deliver-record b-b ">
+                    <span class="title b-b j-getExpressId" data-expressid="708391268579">物流信息</span>
+
+                    <div class="boxs">
+                        <div id="ship" class="loading-wrap"><div class="infos">顺丰：708391268579<span>* 物流信息仅供参考，准确信息可前往该物流官网查询。</span></div>
+                            <div class="records">
+                                <div class="items active fitem">
+                                    <input type="hidden" value="1539428394000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear">2018-10-13</i> <i>18:59:54</i></span>
+                                    <span>您的订单已完成</span>
+                                </div>
+                                <div class="items">
+                                    <input type="hidden" value="1539428355000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-13</i> <i>18:59:15</i></span>
+                                    <span>已签收,感谢使用顺丰,期待再次为您服务</span>
+                                </div>
+                                <div class="items">
+                                    <input type="hidden" value="1539417818000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-13</i> <i>16:03:38</i></span>
+                                    <span>正在派送途中,请您准备签收(派件人:王书振,电话:17539575247)</span>
+                                </div>
+                                <div class="items">
+                                    <input type="hidden" value="1539417818000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-13</i> <i>16:03:38</i></span>
+                                    <span>快件到达 【鹤壁市淇滨区大赉店村营业点】</span>
+                                </div>
+                                <div class="items">
+                                    <input type="hidden" value="1539407332000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-13</i> <i>13:08:52</i></span>
+                                    <span>快件在【新乡关堤集散点】已装车,准备发往 【鹤壁市淇滨区大赉店村营业点】</span>
+                                </div>
+                                <div class="items">
+                                    <input type="hidden" value="1539394214000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-13</i> <i>09:30:14</i></span>
+                                    <span>快件到达 【新乡关堤集散点】</span>
+                                </div>
+                                <div class="items it">
+                                    <input type="hidden" value="1539361849000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-13</i> <i>00:30:49</i></span>
+                                    <span>快件在【武汉吴家山集散中心】已装车,准备发往 【新乡关堤集散点】</span>
+                                </div>
+                                <div class="items fitem">
+                                    <input type="hidden" value="1539357122000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear">2018-10-12</i> <i>23:12:02</i></span>
+                                    <span>快件到达 【武汉吴家山集散中心】</span>
+                                </div>
+                                <div class="items">
+                                    <input type="hidden" value="1539353823000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-12</i> <i>22:17:03</i></span>
+                                    <span>快件在【武汉黄陂汉北营业部】已装车,准备发往 【武汉吴家山集散中心】</span>
+                                </div>
+                                <div class="items">
+                                    <input type="hidden" value="1539342660000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-12</i> <i>19:11:00</i></span>
+                                    <span>顺丰速运 已收取快件</span>
+                                </div>
+                                <div class="items">
+                                    <input type="hidden" value="1539337485000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-12</i> <i>17:44:45</i></span>
+                                    <span>您的订单已出库，正发往分拣中心</span>
+                                </div>
+                                <div class="items">
+                                    <input type="hidden" value="1539337457000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-12</i> <i>17:44:17</i></span>
+                                    <span>您的订单已打包完毕</span>
+                                </div>
+                                <div class="items">
+                                    <input type="hidden" value="1539336963000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-12</i> <i>17:36:03</i></span>
+                                    <span>您的订单已拣货完成</span>
+                                </div>
+                                <div class="items">
+                                    <input type="hidden" value="1539336161000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-12</i> <i>17:22:41</i></span>
+                                    <span>您的订单正准备拣货</span>
+                                </div>
+                                <div class="items origin">
+                                    <input type="hidden" value="1539335386000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-12</i> <i>17:09:46</i></span>
+                                    <span>您的订单已经进入仓库准备出库</span>
+                                </div>
+                                <div class="items origin">
+                                    <input type="hidden" value="1539333941000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-12</i> <i>16:45:41</i></span>
+                                    <span>您的订单已经进入仓库准备拣货</span>
+                                </div>
+                                <div class="items origin">
+                                    <input type="hidden" value="1539333936000" class="j-routeTimeMillis">
+                                    <span class="time-disc"><i class="j-showYear hide">2018-10-12</i> <i>16:45:36</i></span>
+                                    <span>您的订单已经支付成功，请等待商家确认</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="item product" id="products">
+                    <div class="title clearfix">&nbsp;&nbsp;&nbsp;&nbsp;订单号：
+                        <span>21101232240922626271</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;支付方式：<span>支付宝</span>
+                    </div>
+                    <table>
+                        <tbody><tr>
+                            <td class="product" colspan="2" style="padding-left: 44px;">供应商：魅族
+                                <a href="javascript:;" class="j-kefu kefu" data-supplierid="1" data-brandname="魅族" data-support-xiaoneng="1">
+                                    <span><i class="iconfont icon-kefu"></i>&nbsp;联系客服</span>
+                                </a>
+                            </td>
+                            <td>单价</td>
+                            <td>数量</td>
+                            <td>优惠</td>
+                            <td class="back-two">小计</td>
+                            <td>售后</td>
+
+
+                        </tr>
+
+                        <tr class="b-b-dashed">
+                            <td class="p-r">
+
+                                <a href="//detail.meizu.com/item/ep_2x.html" target="_blank">
+                                    <img src="//openfile.meizu.com/group1/M00/00/A2/Cix_s1gcVpeAOmoaAAGh-ubroNg891.png"></a></td>
+                            <td class="product"><span><a href="//detail.meizu.com/item/ep_2x.html" target="_blank">
+                                        魅族 EP2X耳机<br>
+                                        皓月白<br>
+                                            <span></span>
+                                        </a></span>
+                            </td>
+
+                            <td class="price">
+                                <span>￥129</span>
+                            </td>
+                            <td>1</td>
+
+                            <td class="cut">
+                                <div class="yh-wrap">
+                                            <span class="yh-btn-multi">
+                                                优惠 -¥60<i class="icon-yh"></i>
+                                            </span>
+                                    <div class="yh-content" style="min-width: 70px;">
+                                        <span> 限时折扣 -¥60</span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="bold back-two"> ￥69</td>
+
+                            <td class="p-r">
+                                <a href="//ordercenter.meizu.com/refund/apply.html?order_sn=21101232240922626271&amp;order_child_sn=21101232240922627271" class="gray">退货 / 换货</a>
+
+                            </td>
+                        </tr>
+
+
+                        <tr class="ticket-line-tr">
+                            <td colspan="7" class="ticket-line">
+                                <div class="item ticket clearfix">
+                                    <p class="specail f-fl">
+                                        <span class="space gray">发票类型：</span>
+                                        <span>
+                                            <b class="text">
+                                                    <span class="gray-6">电子发票</span>
+                                                    <i id="question" class="iconfont icon-question"></i>
+                                            </b>
+                                        </span></p>
+                                    <p class="f-fl">
+                                        <span class="space gray">发票抬头：</span>
+                                        <span class="gray-6">王树</span>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+
+                        </tbody></table>
+                </div>
+
+                <div class="item makeOrder">
+                    <input type="hidden" id="pageId" value="1">
+                    <input type="hidden" id="isOld" value="0">
+                    <input type="hidden" id="relateSn" value="21101232240922626271">
+                    <input type="hidden" value="0">
+                    <input type="hidden" id="isCart" value="0">
+                    <ul>
+                        <li><span>商品总计</span><span>￥69</span>
+                        </li>
+                        <li><span>回购金抵扣</span><span class="big-red">-￥0</span>
+                        </li>
+                        <li><span>礼品卡抵扣</span><span class="big-red">-￥0</span>
+                        </li>
+                        <li><span>运费</span><span>￥0</span>
+                        </li>
+                        <li class="end"><span>应付</span><span class="total big-red">￥69</span>
+                        </li>
+                    </ul>
+                    <input type="hidden" id="orderSn" value="21101232240922626271">
+                    <input type="hidden" id="addressId" value="8861036452000">
+                    <input type="hidden" id="zipCode" value="458000">
+                </div>
+
+                <div class="editBox title">
+                    <span class="title">收货人信息&nbsp;&nbsp;</span>
+
+                </div>
+                <div class="address">
+                    <p>收货人：王墅</p>
+                    <p>地址：河南省鹤壁市淇滨区长江路街道鹤壁职业技术学院</p>
+                    <p>电话：17639206656</p>
+                    <p>邮编：458000</p>
+                </div>
+
+                <div class="edit-order" style="display:none">
+                    <form id="valid-form">
+                        <div class="contents">
+                            <div class="row namePhone clearfix">
+                                <div class="f-fl addressName">
+                                    <span>收货人姓名<i class="mark">*</i></span>
+                                    <input id="name" class="varify" name="receiver" type="text" placeholder="长度不超过15个字" maxlength="12" value="王墅">
+                                </div>
+                                <div class="f-fl addressPhone">
+                                    <span>收货人手机号<i class="mark">*</i></span>
+                                    <input id="phone" name="telNumber" class="varify" type="text" placeholder="请输入11位手机号" maxlength="11" value="17639206656">
+                                </div>
+                            </div>
+                            <div class="row clearfix receverAddress">
+                                <span class="f-fl">收货人地址<i class="mark">*</i></span>
+                                <div class="mzui_select mzui_select_province f-fl">
+                                    <input type="text" readonly="true" class="mzui_select_trigger province" placeholder="省/直辖市">
+                                    <select class="provinceId" name="provinceId">
+                                        <option value="2911">北京</option>
+                                        <option value="14848">天津</option>
+                                        <option value="7450">吉林省</option>
+                                        <option value="8452">辽宁省</option>
+                                        <option value="16860">浙江省</option>
+                                        <option value="1">福建省</option>
+                                        <option value="16624">上海</option>
+                                        <option value="18482">广东省</option>
+                                        <option value="21612">海南省</option>
+                                        <option value="41143">湖北省</option>
+                                        <option value="42634">湖南省</option>
+                                        <option value="36793">安徽省</option>
+                                        <option value="15121">江苏省</option>
+                                        <option value="1214">江西省</option>
+                                        <option value="27304">四川省</option>
+                                        <option value="35714">重庆</option>
+                                        <option value="34187">云南省</option>
+                                        <option value="23366">贵州省</option>
+                                        <option value="20238">广西壮族自治区</option>
+                                        <option value="32166">西藏自治区</option>
+                                        <option value="11241">山东省</option>
+                                        <option value="38498" selected="selected">河南省</option>
+                                        <option value="21894">甘肃省</option>
+                                        <option value="3251">河北省</option>
+                                        <option value="10088">内蒙古自治区</option>
+                                        <option value="25024">宁夏回族自治区</option>
+                                        <option value="25305">青海省</option>
+                                        <option value="13289">山西省</option>
+                                        <option value="25761">陕西省</option>
+                                        <option value="32939">新疆维吾尔自治区</option>
+                                        <option value="5700">黑龙江省</option>
+                                    </select>
+                                </div>
+                                <div class="mzui_select mzui_select_city f-fl">
+                                    <input type="text" readonly="true" class="mzui_select_trigger city" placeholder="城市">
+                                    <select class="cityId" name="cityId">
+                                        <option value="" style="display:none"></option>
+                                        <option value="38499">商丘市</option>
+                                        <option value="38699">郑州市</option>
+                                        <option value="38899">安阳市</option>
+                                        <option value="39045">新乡市</option>
+                                        <option value="39213">许昌市</option>
+                                        <option value="39321">平顶山市</option>
+                                        <option value="39476">信阳市</option>
+                                        <option value="39698">南阳市</option>
+                                        <option value="39950">开封市</option>
+                                        <option value="40085">洛阳市</option>
+                                        <option value="40292">焦作市</option>
+                                        <option value="40407">济源市</option>
+                                        <option value="40425" selected="selected">鹤壁市</option>
+                                        <option value="40474">濮阳市</option>
+                                        <option value="40570">周口市</option>
+                                        <option value="40787">漯河市</option>
+                                        <option value="40848">驻马店市</option>
+                                        <option value="41056">三门峡市</option>
+                                    </select>
+                                </div>
+                                <div class="mzui_select mzui_select_area f-fl">
+                                    <input type="text" readonly="true" class="mzui_select_trigger area" placeholder="区/县">
+                                    <select class="areaId" name="areaId">
+                                        <option value="" style="display:none"></option>
+                                        <option value="40426">鹤山区</option>
+                                        <option value="40434">山城区</option>
+                                        <option value="40442" selected="selected">淇滨区</option>
+                                        <option value="40454">浚县</option>
+                                        <option value="40464">淇县</option>
+                                    </select>
+                                </div>
+                                <div class="mzui_select mzui_select_town f-fl">
+                                    <input type="text" readonly="true" class="mzui_select_trigger town" placeholder="乡镇/街道">
+                                    <select class="townId" name="townId">
+                                        <option value="" style="display:none"></option>
+                                        <option value="40443">金山街道</option>
+                                        <option value="40444">大赉店镇</option>
+                                        <option value="40445">钜桥镇</option>
+                                        <option value="40446">上峪乡</option>
+                                        <option value="40447">大河涧乡</option>
+                                        <option value="40448">九州路街道</option>
+                                        <option value="40449">黎阳路街道</option>
+                                        <option value="40450" selected="selected">长江路街道</option>
+                                        <option value="40451">海河路街道</option>
+                                        <option value="40452">渤海路街道</option>
+                                        <option value="40453">东杨街道</option>
+                                        <option value="0">其他</option>
+                                    </select>
+                                </div>
+                                <div class="mzui_select_other hide">
+                                    <input type="text" class="otherAddress _otherAddress" placeholder="其他">
+                                </div>
+                            </div>
+                            <div class="row  detailAddress">
+                                <span>详细地址<i class="mark">*&nbsp;&nbsp;&nbsp;</i></span>
+                                <input id="detailAddress" name="address" class="varify" type="text" placeholder="请输入不超过50个字的详细地址，例如街道，门牌号，房间号等" maxlength="50" value="鹤壁职业技术学院">
+                            </div>
+                            <div class="opreat">
+                                <a href="javascript:;" class="saveAddress">保存</a><a href="javascript:;" class="cancle-edit">取消</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- common js -->
+
+<!-- end content -->
+
+<footer class="layout-footer">
+    <div class="mzcontainer">
+        <section class="layout-footer-top clearfix">
+            <ul class="layout-footer-services clearfix">
+                <li class="layout-footer-services-item">
+                    <a href="http://service.meizu.com/help/delivery.html" class="layout-footer-services-link"
+                       target="_blank" data-mtype="wmz_public_foot_freemail">
+                        <img src="https://openfile.meizu.com/group1/M00/05/CD/Cgbj0VthLJiAMbGmAAAOTQY17So137.png"
+                             alt="">
+                        <span class="layout-footer-services-text">全场顺丰包邮</span>
+                    </a>
+                </li>
+                <li class="layout-footer-services-item">
+                    <a href="https://store.meizu.com/marrive/summary.html" class="layout-footer-services-link"
+                       target="_blank" data-mtype="wmz_public_foot_cityfast">
+                        <img src="https://openfile.meizu.com/group1/M00/05/CC/Cgbj0VthLD6AHWNVAAAHnU-N-dQ054.png"
+                             alt="">
+                        <span class="layout-footer-services-text">100+ 城市次日送达</span>
+                    </a>
+                </li>
+                <li class="layout-footer-services-item">
+                    <a href="http://service.meizu.com/help/after_ser.html#policy1" class="layout-footer-services-link"
+                       target="_blank" data-mtype="wmz_public_foot_noreasonreturn">
+                        <img src="https://openfile.meizu.com/group1/M00/05/CD/Cgbj0VthLGiAPvqxAAAIxQPg9a0798.png"
+                             alt="">
+                        <span class="layout-footer-services-text">7天无理由退货</span>
+                    </a>
+                </li>
+                <li class="layout-footer-services-item">
+                    <a href="http://service.meizu.com/help/after_ser.html#policy2" class="layout-footer-services-link"
+                       target="_blank" data-mtype="wmz_public_foot_exchangeguarantee">
+                        <img src="https://openfile.meizu.com/group1/M00/05/CC/Cgbj0VthLFuAUtd0AAALmPd8Wgw009.png"
+                             alt="">
+                        <span class="layout-footer-services-text">15天换货保障</span>
+                    </a>
+                </li>
+                <li class="layout-footer-services-item">
+                    <a href="http://service.meizu.com/help/after_ser.html#policy3" class="layout-footer-services-link"
+                       target="_blank" data-mtype="wmz_public_foot_freerepair">
+                        <img src="https://openfile.meizu.com/group1/M00/05/BD/Cgbj0FthLHaATnUUAAAJC3dC3Bk024.png"
+                             alt="">
+                        <span class="layout-footer-services-text">1年免费保修</span>
+                    </a>
+                </li>
+                <li class="layout-footer-services-item">
+                    <a href="http://care.meizu.com/repair/home/profile.html" class="layout-footer-services-link"
+                       target="_blank" data-mtype="wmz_public_foot_homerepair">
+                        <img src="https://openfile.meizu.com/group1/M00/05/BD/Cgbj0FthLGGAB79EAAAFUWqaNBI042.png"
+                             alt="">
+                        <span class="layout-footer-services-text">上门快修</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="layout-footer-contact">
+                <p class="layout-footer-contact-desc">周一至周日 7:30-24:00</p>
+                <a href="tel:400-788-3333" class="layout-footer-contact-tel">400-788-3333</a>
+                <p>
+                    <a href="javascript:void(0);" data-mtype="wmz_public_foot_onservice"
+                       class="layout-footer-contact-online"
+                       onclick="window.open('https://mwx-api.meizu.com/live-service');">
+                        <span class="text">在线客服</span>
+                    </a>
+                </p>
+            </div>
+        </section>
+        <section class="layout-footer-bottom clearfix">
+            <ul class="layout-footer-interlock clearfix">
+                <li class="layout-footer-interlock-item">
+                    <a href="//www.meizu.com/about.html" target="_blank" class="layout-footer-interlock-link"
+                       data-mtype="wmz_public_yw_learn">了解魅族</a>
+                </li>
+                <li class="layout-footer-interlock-item">
+                    <a href="http://hr.meizu.com/" target="_blank" class="layout-footer-interlock-link"
+                       data-mtype="wmz_public_yw_join">加入我们</a>
+                </li>
+                <li class="layout-footer-interlock-item">
+                    <a href="//www.meizu.com/contact.html" target="_blank" class="layout-footer-interlock-link"
+                       data-mtype="wmz_public_yw_contact">联系我们</a>
+                </li>
+                <li class="layout-footer-interlock-item">
+                    <a href="http://www.flyme.cn/" target="_blank" class="layout-footer-interlock-link"
+                       data-mtype="wmz_public_yw_flyme">Flyme</a>
+                </li>
+                <li class="layout-footer-interlock-item">
+                    <a href="http://bbs.meizu.com" target="_blank" class="layout-footer-interlock-link"
+                       data-mtype="wmz_public_yw_bbs">魅族社区</a>
+                </li>
+                <li class="layout-footer-interlock-item">
+                    <a href="https://meizu.tmall.com/" target="_blank" class="layout-footer-interlock-link"
+                       data-mtype="wmz_public_yw_tmall">天猫旗舰店</a>
+                </li>
+                <li class="layout-footer-interlock-item">
+                    <a href="//www.meizu.com/feedback.html" target="_blank" class="layout-footer-interlock-link"
+                       data-mtype="wmz_public_yw_question">问题反馈</a>
+                </li>
+                <li class="layout-footer-interlock-item">
+                    <a href="//www.meizu.com/authorization.html" target="_blank" class="layout-footer-interlock-link"
+                       data-mtype="wmz_public_yw_map">线上销售授权名单公示</a>
+                </li>
+                <li class="layout-footer-interlock-item">
+                    <a href="//cimg2.res.meizu.com/www/meizu/publish_license.pdf" target="_blank"
+                       class="layout-footer-interlock-link" data-mtype="wmz_public_yw_license">出版物经营许可证</a>
+                </li>
+                <li class="layout-footer-interlock-item interlock-link-lang">
+          <span class="layout-footer-language">
+            <a href="javascript:void(0);" class="layout-footer-interlock-link" id="layoutFooterLang">
+              <img class="link-icon-image"
+                   src="https://openfile.meizu.com/group1/M00/05/BE/Cgbj0FthaAuAPEHcAAAETGHvlNk697.png" alt="">
+              简体中文
+            </a>
+          </span>
+                    <div class="layout-footer-body" id="layoutFooterLangBody">
+                    </div>
+                </li>
+            </ul>
+            <div class="layout-footer-copyright clearfix">
+        <span class="layout-footer-copyright-left">
+          <a class="layout-footer-copyright-link copyright-text">©2018 Meizu Telecom Equipment Co., Ltd. All rights reserved.</a>
+          <a class="layout-footer-copyright-link" hidefocus="true" href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备13003602号-2</a>
+          <a class="layout-footer-copyright-link" hidefocus="true"
+             href="//store.res.meizu.com/layout/img/icp-abd57f3b39.png" target="_blank">合字B2-20170010</a>
+          <a class="layout-footer-copyright-link" hidefocus="true"
+             href="//www2.res.meizu.com/zh_cn/images/common/com_licence.jpg" target="_blank">营业执照</a>
+          <a class="layout-footer-copyright-link" hidefocus="true" href="http://www.meizu.com/legalStatement.html"
+             target="_blank">法律声明</a>
+          <a class="layout-footer-copyright-link"><i class="layout-icon-police"></i>粤公网安备 44049102496009 号</a>
+          <a class="layout-footer-copyright-link" hidefocus="true" href="http://210.76.65.188/" rel="nofollow"
+             target="_blank">
+            <i class="layout-icon layout-icon-license"></i>
+          </a>
+          <a class="layout-footer-copyright-link" hidefocus="true"
+             href="http://210.76.65.188/webrecord/innernet/Welcome.jsp?bano=4404013010531" rel="nofollow"
+             target="_blank">
+            <i class="layout-icon layout-icon-wel"></i>
+          </a>
+          <a class="layout-footer-copyright-link" hidefocus="true"
+             href="https://credit.szfw.org/CX20151204012550820380.html" rel="nofollow" target="_blank">
+            <i class="layout-icon layout-icon-trust"></i>
+          </a>
+        </span>
+                <ul class="layout-footer-media clearfix">
+                    <li class="layout-footer-media-item">
+                        <a href="http://weibo.com/meizumobile" class="layout-footer-media-link">
+                            <i class="layout-font layout-font-weibo"></i>
+                        </a>
+                    </li>
+                    <li class="layout-footer-media-item">
+                        <a href="javascript:void(0);" class="layout-footer-media-link wechat">
+                            <i class="layout-font layout-font-wechat"></i>
+                            <div class="layout-footer-media-wechat-qrcode">
+                                <img class="layout-footer-media-wechat-img"
+                                     src="//www3.res.meizu.com/static/cn/_partial/footer/images/wx-code_94c130c.jpg"
+                                     alt="微信二维码">
+                            </div>
+                        </a>
+                    </li>
+                    <li class="layout-footer-media-item">
+                        <a href="https://user.qzone.qq.com/2762957059" class="layout-footer-media-link">
+                            <i class="layout-font layout-font-qzone"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</footer>
+
+<div class="store-cart store-cart-hide" style="top: 70px; left: 1093.5px;"></div>
+<div class="layout-user-downmenu layout-user-downmenu-login">
+    <ul class="layout-user-downmenu-list">
+        <li class="layout-user-downmenu-item">
+            <a href="//ordercenter.meizu.com/list/index.html" class="layout-user-downmenu-link"
+               data-mtype="wmz_public_grzx_myorder">我的订单<span class="layout-user-downmenu-num"
+                                                              id="layoutUserOrderNum"></span></a>
+        </li>
+        <li class="layout-user-downmenu-item">
+            <a href="//me.meizu.com/member/message/index" class="layout-user-downmenu-link"
+               data-mtype="wmz_public_grzx_notice">消息通知<span class="layout-user-downmenu-num"
+                                                             id="layoutUserMsgNum">1</span></a>
+        </li>
+        <li class="layout-user-downmenu-item">
+            <a href="//me.meizu.com/member/favorite/index" class="layout-user-downmenu-link"
+               data-mtype="wmz_public_grzx_favorites">我的收藏</a>
+        </li>
+        <li class="layout-user-downmenu-item">
+            <a href="//store.meizu.com/mformy/index" class="layout-user-downmenu-link"
+               data-mtype="wmz_public_grzx_mformy">M码通道</a>
+        </li>
+        <li class="layout-user-downmenu-item">
+            <a href="javascript:window.location.href='http://store.meizu.com/member/logout.htm?useruri='+ encodeURIComponent(encodeURIComponent(window.location.href));"
+               class="layout-user-downmenu-link" data-mtype="wmz_public_grzx_quit">退出登录</a>
+        </li>
+    </ul>
+</div>
+<script src="/js/order-center.js"></script>
+</body>
+</html>
