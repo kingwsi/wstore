@@ -5,7 +5,7 @@ import com.wstore.common.utils.*;
 import com.wstore.pojo.cart.CartGroup;
 import com.wstore.pojo.cart.ShoppingCart;
 import com.wstore.pojo.sso.User;
-import com.wstore.service.CartService;
+import com.wstore.stroe.service.impl.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -27,7 +28,7 @@ public class WstoreFastDFS {
     private FastFileStorageClient storageClient;
 
     @Autowired
-    private FastFileStorageClient fastFileStorageClient;
+    FastFileStorageClient fastFileStorageClient;
 
     @Value("${img_server_host}")
     private String IMG_SERVER_HOST;
@@ -38,17 +39,15 @@ public class WstoreFastDFS {
      * @param fileEx 后缀名
      * @return 文件路径
      */
-    public String upload(MultipartFile file, String fileEx) {
+    public String upload(MultipartFile file, String fileEx) throws IOException {
         try {
             StorePath storePath = fastFileStorageClient.uploadFile(file.getInputStream(), file.getSize(), fileEx , null);
             String resultPath = storePath.getGroup() + "/" + storePath.getPath();
             logger.info("上传文件"+file.getOriginalFilename()+"到"+storePath);
             return resultPath;
-
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
-        return null;
     }
 
     /**

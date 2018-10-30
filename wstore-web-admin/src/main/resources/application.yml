@@ -1,14 +1,16 @@
 server:
   port: 8083
 #图片服务器
+# 分布式文件系统FDFS配置
+# ===================================================================
 fdfs:
-    so-timeout: 1501
-    connect-timeout: 601
-    thumb-image:
-        width: 150
-        height: 150
-    tracker-list:
-        - 192.168.144.131:22122
+  so-timeout: 1501
+  connect-timeout: 601
+  thumb-image:
+    width: 150
+    height: 150
+  tracker-list:
+  - 192.168.144.131:22122
 #Dubbo
 dubbo:
   registry:
@@ -25,6 +27,10 @@ dubbo:
 spring:
   thymeleaf:
     cache: false
+  redis:
+    host: 192.168.144.133
+    port: 6379
+    database: 2
 #regis
 admin.login.key: ADMIN_KEYS
 #登陆超时时间 -s

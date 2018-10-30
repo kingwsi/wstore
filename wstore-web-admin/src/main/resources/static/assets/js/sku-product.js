@@ -1,7 +1,7 @@
 /*添加图片*/
 function add_img(value) {
     var data = new FormData($(value).parent().parent()[0]);
-    console.log($(value).parent().parent()[0]);
+    //console.log($(value).parent().parent()[0]);
     $.ajax({
         url: "/product/picture",
         type: "POST",

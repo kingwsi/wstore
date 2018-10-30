@@ -4,6 +4,7 @@ spring:
     elasticsearch:
       cluster-name: elasticsearch
       cluster-nodes: 192.168.144.133:9300
+
   datasource:
       url: jdbc:mysql://192.168.144.133:3306/wstore
       username: root

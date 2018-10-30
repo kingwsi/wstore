@@ -18,7 +18,7 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.wang</groupId>
+            <groupId>com.wstore</groupId>
             <artifactId>wstore-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>

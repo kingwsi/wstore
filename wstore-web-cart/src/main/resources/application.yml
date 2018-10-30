@@ -6,7 +6,7 @@ dubbo:
     address: zookeeper://192.168.144.130
     port: 2181
   application:
-    name: wstore-web-item
+    name: wstore-web-cart
   protocol:
     serialization: kryo
     port: 20888

@@ -29,6 +29,8 @@
         <module name="wstore-service-search-api" />
         <module name="wstore-service-sso" />
         <module name="wstore-service-sso-api" />
+        <module name="wstore-service-store" />
+        <module name="wstore-service-store-api" />
         <module name="wstore-web-admin" />
         <module name="wstore-web-cart" />
         <module name="wstore-web-item" />
@@ -39,12 +41,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="com-service-store-api" target="7" />
       <module name="com-web-cart" target="1.8" />
       <module name="consumer-user" target="1.8" />
       <module name="dubbo-demo" target="1.8" />
       <module name="wstore-common-config" target="1.5" />
       <module name="wstore-rabbit-demo" target="1.8" />
-      <module name="wstore-service-mail-api" target="1.5" />
+      <module name="wstore-service-mail-api" target="7" />
       <module name="wstore-service-rabbitmq" target="1.5" />
       <module name="wstore-service-rabbitmq-api" target="1.5" />
       <module name="wstore-service-redis" target="1.8" />

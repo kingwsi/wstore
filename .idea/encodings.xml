@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/com-service-store-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-common-mapper" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstore-common-pojo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-service-admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstore-service-admin-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-service-cart" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstore-service-cart-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-service-item" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-service-item-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-service-mail" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstore-service-mail-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-service-order" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstore-service-order-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-service-pay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstore-service-pay-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-service-portal" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstore-service-portal-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-service-search" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstore-service-search-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-service-sso" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-service-sso-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstore-service-store" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstore-service-store-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-web-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-web-cart" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wstore-web-item" charset="UTF-8" />

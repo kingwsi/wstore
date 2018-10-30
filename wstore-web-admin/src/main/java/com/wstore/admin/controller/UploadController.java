@@ -2,7 +2,6 @@ package com.wstore.admin.controller;
 
 import com.wstore.admin.util.WstoreFastDFS;
 import com.wstore.common.utils.*;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -80,9 +79,7 @@ public class UploadController {
         if (width != height) {
             int side = width > height ? width : height;
             ImgResultPath = wstoreFastDFS.upload(WstoreImageUtils.fillImageSpace(read, side, side), "png");
-        } else {
-            ImgResultPath = wstoreFastDFS.upload(file, fileExtensionName);
-        }
+        } else ImgResultPath = wstoreFastDFS.upload(file, fileExtensionName);
         return WstoreResultMsg.success().add("imgPath", "http://" + IMG_SERVER_HOST + "/" + ImgResultPath).add("imgName", ImgResultPath);
     }
 
