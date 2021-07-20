@@ -1,46 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="EntryPointsManager">
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="com.alibaba.dubbo.config.annotation.Service" />
-    </list>
-  </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-web-sso/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-service-sso/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-web-portal/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-service-mail/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-service-admin/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-web-admin/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-service-portal/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-web-item/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-web-order/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-service-item/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-service-search/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-web-list/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-service-cart/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-web-cart/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-common/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-service-order/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-service-order-api/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-common-mapper/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-service-store/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/com-service-store-api/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-common-config/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-common-mapper/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-common-pojo/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-common/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-service-admin-api/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-service-cart-api/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-service-item-api/pom.xml" />
         <option value="$PROJECT_DIR$/wstore-service-mail-api/pom.xml" />
-        <option value="$PROJECT_DIR$/wstore-service-rabbitmq-api/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-service-pay-api/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-service-pay/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-service-portal-api/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-service-search-api/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-service-sso-api/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-service-sso/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-service-store-api/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-web-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/wstore-web-sso/pom.xml" />
       </set>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>

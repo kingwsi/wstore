@@ -2,60 +2,39 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="com-web-cart" />
-        <module name="wstore-common" />
-        <module name="wstore-common-mapper" />
-        <module name="wstore-common-pojo" />
-        <module name="wstore-common.mapper" />
-        <module name="wstore-service-admin" />
-        <module name="wstore-service-admin-api" />
-        <module name="wstore-service-cart" />
-        <module name="wstore-service-cart-api" />
-        <module name="wstore-service-item" />
-        <module name="wstore-service-item-api" />
-        <module name="wstore-service-mail" />
-        <module name="wstore-service-mail-api" />
-        <module name="wstore-service-order" />
-        <module name="wstore-service-order-api" />
-        <module name="wstore-service-pay" />
-        <module name="wstore-service-pay-api" />
-        <module name="wstore-service-portal" />
-        <module name="wstore-service-portal-api" />
-        <module name="wstore-service-search" />
-        <module name="wstore-service-search-api" />
-        <module name="wstore-service-sso" />
-        <module name="wstore-service-sso-api" />
-        <module name="wstore-service-store" />
-        <module name="wstore-service-store-api" />
-        <module name="wstore-web-admin" />
-        <module name="wstore-web-cart" />
-        <module name="wstore-web-item" />
-        <module name="wstore-web-list" />
-        <module name="wstore-web-order" />
-        <module name="wstore-web-portal" />
-        <module name="wstore-web-sso" />
+        <module name="wstore" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="com-service-store-api" target="7" />
-      <module name="com-web-cart" target="1.8" />
-      <module name="consumer-user" target="1.8" />
-      <module name="dubbo-demo" target="1.8" />
-      <module name="wstore-common-config" target="1.5" />
-      <module name="wstore-rabbit-demo" target="1.8" />
+      <module name="wstore" target="1.8" />
+      <module name="wstore-common" target="1.8" />
+      <module name="wstore-common-mapper" target="7" />
+      <module name="wstore-common-pojo" target="7" />
+      <module name="wstore-service-admin-api" target="7" />
+      <module name="wstore-service-cart-api" target="7" />
+      <module name="wstore-service-item-api" target="7" />
       <module name="wstore-service-mail-api" target="7" />
-      <module name="wstore-service-rabbitmq" target="1.5" />
-      <module name="wstore-service-rabbitmq-api" target="1.5" />
-      <module name="wstore-service-redis" target="1.8" />
-      <module name="wstore-service-redis-api" target="1.5" />
-      <module name="wstore-service-user" target="1.8" />
-      <module name="wstore-web-search" target="1.8" />
-      <module name="wstore-web-user" target="1.8" />
-      <module name="wstorecommonmapper" target="1.5" />
+      <module name="wstore-service-pay" target="7" />
+      <module name="wstore-service-pay-api" target="7" />
+      <module name="wstore-service-portal-api" target="7" />
+      <module name="wstore-service-search-api" target="7" />
+      <module name="wstore-service-sso" target="7" />
+      <module name="wstore-service-sso-api" target="7" />
+      <module name="wstore-service-store-api" target="7" />
+      <module name="wstore-web" target="7" />
+      <module name="wstore-web-admin" target="7" />
+      <module name="wstore-web-sso" target="7" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="wstore" options="-parameters" />
+      <module name="wstore-common" options="-parameters" />
+    </option>
   </component>
 </project>

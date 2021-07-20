@@ -1,0 +1,46 @@
+.product_add_img{
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+}
+.product_add_img_after{
+    z-index: 2;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+}
+.product_add_img_after:hover{
+    opacity: 1;
+    transition: all .2s ease-in-out;
+}
+
+#select_brand_btn button{
+    margin-left: 0px!important;
+}
+
+.table_group{
+    background: rgb(220, 220, 220);
+}
+#properties_table div>td{
+    background: #0a6999!important;
+}
+#properties_table thead td{
+    font-weight: normal!important;
+}
+#properties_table input{
+    border: none;
+}
+#properties_table tr td{
+    position: relative;
+}
+#properties_table tr td button{
+    position: absolute;
+    top:5px;
+    right: 10px;
+}
+#properties_table tr td button:hover{
+    color: red;
+}
+/*空样式，提交图片使用标识*/
+.upload_img_link{
+
+}

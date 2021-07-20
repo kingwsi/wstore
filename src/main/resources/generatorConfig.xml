@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+        <!-- 选择是否生成注释 true为不生成 -->
+        <commentGenerator>
+            <property name="useActualColumnNames" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库链接配置 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.144.133:3306/wstore" userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 指定javaBean生成位置 -->
+        <javaModelGenerator targetPackage="com.wstore.pojo.pay"
+                            targetProject="wstore-common-pojo/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 制定sql映射文件生成位置 -->
+        <sqlMapGenerator targetPackage="com.wstore.mapper" targetProject="wstore-common-mapper/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 指定dao接口生成位置 mapper接口 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wstore.mapper" targetProject="wstore-common-mapper/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- table指定每个表的生成策略 -->
+        <table tableName="tbl_payment_slip" domainObjectName="PaymentSlip"></table>
+    </context>
+</generatorConfiguration>

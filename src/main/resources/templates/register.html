@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Wstore - 注册</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/jquery-3.3.1.js" type="application/javascript"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="top">
+        </div>
+    </div>
+    <div class="content">
+        <!--step1-->
+        <div class="login-box">
+            <div id="first-step">
+                <h3 class="login-title">用户注册</h3>
+                <form class="login-form">
+                    <input type="email" id="account-input" placeholder="手机号/邮箱" value="77239934@qq.com" />
+                    <p class="login-form-error">
+                    </p>
+                    <input class="validate-input" name="verifyCode" type="text" placeholder="验证码" id="verify_code" />
+                    <img class="validate-pic" src="/verifyCode" />
+                    <p class="login-form-error">
+                    </p>
+                    <button type="button" class="login-btn" id="next-step">注册</button>
+                </form>
+                <a href="#">已有账号？去登陆</a>
+            </div>
+            <!--step2-->
+            <div class="w-hide" id="second-step">
+                <h3 class="login-title">验证后继续</h3>
+                <form id="register-form" class="login-form">
+                    <h3 class="mail-name" id="account-label"></h3>
+                    <input type="hidden" value="" name="userAccount">
+                    <input type="text" placeholder="输入6位验证码" name="verifyCode" />
+                    <p class="login-form-error">
+                    </p>
+                    <div class="mz-hide">
+                        <input type="text" placeholder="用户名" name="userName" />
+                        <p class="login-form-label">
+                            输入4-8位用户名,设置后将不可修改
+                        </p>
+                        <input type="password" placeholder="密码" name="password" />
+                        <p class="login-form-label">
+                            请输入8-16位由字母、数字、下划线组成的密码
+                        </p>
+                        <input type="password" placeholder="重复密码" name="repeatPassword" id="repeatPassword" />
+                        <p class="login-form-error">
+                        </p>
+                    </div>
+                    <button type="button" class="login-btn" id="register-btn">确认</button>
+                </form>
+                <a href="#">已有账号？去登陆</a>
+            </div>
+        </div>
+    </div>
+<script src="js/register.js" type="text/javascript"></script>
+</body>
+
+</html>

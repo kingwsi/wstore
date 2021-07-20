@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/wstore-service-mail-api/wstore-service-mail-api.iml" filepath="$PROJECT_DIR$/wstore-service-mail-api/wstore-service-mail-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wstore.iml" filepath="$PROJECT_DIR$/wstore.iml" />
     </modules>
   </component>
 </project>
